@@ -34,8 +34,8 @@ $dbconn = pg_pconnect("host=ec2-35-169-92-231.compute-1.amazonaws.com port=5432 
 $data= array(
 		"fecha"=>date('Y-m-d H:i:s'),
 		
-		"voltaje"=> $voltaje
-		"motorsense"=>$request->get('motor'),
+		"voltaje"=> $voltaje,
+		"motorsense"=>$request->get('motor')
 		
 		
 );
@@ -47,4 +47,6 @@ return $respuesta;
     return $respuesta;
 });
 
-$app->run();
+$app->run();  
+
+
