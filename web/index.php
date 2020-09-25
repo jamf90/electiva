@@ -26,7 +26,7 @@ $app->get('/', function() use($app) {
 
 
 //Ruta de demostración, para validar que se recibe(n) dato(s) y se responde con este mismo
-$app->post('/enviarDato', function (Request $request) use ($app) {
+$app->get('/enviarDato', function (Request $request) use ($app) {
    return $request;
 });
 
