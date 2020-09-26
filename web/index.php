@@ -26,8 +26,9 @@ $app->get('/', function() use($app) {
 
 
 //Ruta de demostración, para validar que se recibe(n) dato(s) y se responde con este mismo
-$app->get('/enviarDato', function (Request $request) use ($app) {
-   return $request;
+$app->get('/enviarDato', function() use($app) {
+  $app['monolog']->addDebug('logging output.');
+  return $app['twig']->render('index.twig');
 });
 
 
