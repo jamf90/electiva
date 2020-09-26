@@ -1,6 +1,6 @@
 <?php
+
 require('../vendor/autoload.php');
-use Symfony\Component\HttpFoundation\Request;
 
 $app = new Silex\Application();
 $app['debug'] = true;
@@ -18,13 +18,6 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 // Our web handlers
 
 $app->get('/', function() use($app) {
-  $app['monolog']->addDebug('logging output.');
-  return $app['twig']->render('index.twig');
-});
-
-
-//Ruta de demostración, para validar que se recibe(n) dato(s) y se responde con este mismo
-$app->get('/enviarDato', function() use($app) {
   $app['monolog']->addDebug('logging output.');
   return $app['twig']->render('index.twig');
 });
