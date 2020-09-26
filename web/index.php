@@ -2,6 +2,8 @@
 
 require('../vendor/autoload.php');
 
+use Symfony\Component\HttpFoundation\Request;
+
 $app = new Silex\Application();
 $app['debug'] = true;
 
@@ -26,6 +28,13 @@ $app->get('/', function() use($app) {
 $app->get('/ruta', function() use($app) {
   $app['monolog']->addDebug('logging output.');
   return $app['twig']->render('index.twig');
+});
+
+//Ruta de demostración, se recibe(n) dato(s) y se manipulan
+$app->post('/modificarDato', function (Request $request) use ($app) {
+   	$nombre = $request->get('nombre');
+	$respuesta = "Hola " .$nombre;
+   	return $respuesta;
 });
 
 $app->run();
