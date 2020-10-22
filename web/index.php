@@ -33,17 +33,19 @@ $app->get('/ruta', function() use($app) {
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
 $app->post('/Datoenviado', function (Request $request) use ($app) {
    	
+//$voltaje=$request->get('voltaje')
+
 $dbconn = pg_pconnect("host=ec2-35-169-92-231.compute-1.amazonaws.com port=5432 dbname=d40d9mehlild8g user=wsslccaolqixxt password=7809ae03fd8da52449097500903b66b89591dfa44e9fecfb9100605a0eb7b1c1");
+    
+	tabla: motor_view
 
-	if($dbconn){
-	return"Me conecte";
-		}
-	else{
-		return"Conexion Fallida";
-	}
+	$data = array(
+		"fecha"=>date('Y-m-d H:i:s'),
+		"voltaje" => 28
+		);
 
-   	$nombre = $request->get('nombre');
-	$respuesta = "Esp32ok" .$nombre;
+	$respuesta = pg_insert($dbconn,"motor_view", $data);
+   	
    	return $respuesta;
 });
 
