@@ -27,7 +27,7 @@ $app->post('/guardardato', function (Request $request) use ($app) {
    
    $voltaje = $request->get('voltaje');
    $corriente = $request->get('corriente');
-   $motorsense=$motorsense->get('motorsense')
+   $motorsense=$motorsense->get('motorsense');
   	
 
 $dbconn = pg_pconnect("host=ec2-35-169-92-231.compute-1.amazonaws.com port=5432 dbname=d40d9mehlild8g user=wsslccaolqixxt password=7809ae03fd8da52449097500903b66b89591dfa44e9fecfb9100605a0eb7b1c1");
@@ -36,7 +36,7 @@ $data= array(
 		"fecha"=>date('Y-m-d H:i:s'),
 		"corriente"=> $corriente
 		"voltaje"=> $voltaje
-		"motorsense" $motorsense
+		"motorsense" => $motorsense
 		
 );
 $respuesta = pg_insert($dbconn, "Motor_view", $data);
