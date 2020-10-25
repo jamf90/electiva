@@ -25,7 +25,7 @@ $app->get('/', function() use($app) {
 //Ruta de demostración, se recibe(n) dato(s) y se manipulan
 $app->post('/guardardato', function (Request $request) use ($app) {
    
-   $motorsense = $request->get('motorsense');
+   $voltaje = $request->get('voltaje');
    $corriente = $request->get('corriente');
   	
 
