@@ -32,14 +32,12 @@ $dbconn = pg_pconnect("host=ec2-35-169-92-231.compute-1.amazonaws.com port=5432 
 $data= array(
 		"fecha"=>date('Y-m-d H:i:s'),
 		"voltaje"=> $voltaje
-		"MotorSense"=>$request->get('motor'),
-
 );
 $respuesta = pg_insert($dbconn, "Motor_view", $data);
 return $respuesta;
 
   $nombre = $request->get('nombre');
-  $respuesta = "Hola " $nombre;
+  $respuesta = "Hola " .$nombre;
     return $respuesta;
 });
 
