@@ -26,6 +26,9 @@ $app->get('/', function() use($app) {
 $app->post('/guardardato', function (Request $request) use ($app) {
    
    $voltaje = $request->get('voltaje');
+   $tabla = $Request->get('tabla');
+
+
   
   	
 
@@ -40,7 +43,7 @@ $data= array(
 		
 		
 );
-$respuesta = pg_insert($dbconn, "Motor_view", $data);
+$respuesta = pg_insert($dbconn, $tabla, $data);
 return $respuesta;
 
   $nombre = $request->get('nombre');
