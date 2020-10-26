@@ -26,7 +26,7 @@ $app->get('/', function() use($app) {
 $app->post('/guardardato', function (Request $request) use ($app) {
    
    $voltaje = $request->get('voltaje');
-   $tabla = $Request->get('tabla');
+   $tabla = $request->get('tabla');
 
 
   
