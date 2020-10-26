@@ -35,7 +35,8 @@ $data= array(
 		"fecha"=>date('Y-m-d H:i:s'),
 		
 		"voltaje"=> $voltaje,
-		"motorsense"=>$request->get('motor')
+		"motorsense"=>$request->get('motor'),
+		"corriente" => $request->get('corriente')
 		
 		
 );
