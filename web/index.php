@@ -43,8 +43,16 @@ $data= array(
 		
 		
 );
-$respuesta = pg_insert($dbconn, $tabla, $data);
-return $respuesta;
+//$respuesta = pg_insert($dbconn, $tabla, $data);
+	
+$query = "INSERT INTO " . $tabla . "(fecha,corriente,voltaje,motorsense) VALUES ('" . date('Y-m-d H:i:s') . "'," . $corriente . "," . $voltaje . ", '" . $motorsense . "');" ;
+	$respuesta = pg_query($dbconn, $query);
+
+	echo $query; echo "<br><br>";
+	echo $respuesta; echo "<br><br>";
+	$last_id = pg_last_oid($respuesta);
+   	return $last_id;	
+
 
 });
 
