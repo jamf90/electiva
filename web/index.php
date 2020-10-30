@@ -57,11 +57,14 @@ $dbconn = pg_pconnect("host=ec2-35-169-92-231.compute-1.amazonaws.com port=5432 
 $consulta = pg_query($dbconn, "SELECT * FROM motor_view");
 
 print_r(pg_fetch_all($consulta));
- 
+
+echo"<br><br>"
 print_r(pg_fetch_array($consulta,3,PGSQL_NUM));
-	
+
+echo"<br><br>"
 print_r(pg_fetch_array($consulta,5,PGSQL_ASSOC));
-	
+
+echo"<br><br>"
 return "ok";
 });
 
