@@ -45,7 +45,7 @@ $data= array(
 );
 //$respuesta = pg_insert($dbconn, $tabla, $data);
 	
-$query = "INSERT INTO " . $tabla . "(fecha,motorsense,voltaje,corriente,) VALUES ('" . date('Y-m-d H:i:s') . "'," . $motorsense . "," . $voltaje . ", '" . $corriente . "');" ;
+$query = "INSERT INTO " . $tabla . "(fecha,motor,voltaje,corriente,) VALUES ('" . date('Y-m-d H:i:s') . "'," . $motor . "," . $voltaje . ", '" . $corriente . "');" ;
 	$respuesta = pg_query($dbconn, $query);
 
 	echo $query; echo "<br><br>";
