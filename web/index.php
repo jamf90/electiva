@@ -69,7 +69,7 @@ print_r($cons_array);
 echo $cons_array[fecha];
 	
 echo"<br><br>";
-$cons_object = pg_fetch_object($consulta));
+$cons_object = pg_fetch_object($consulta);
 print_r($cons_object);	
 echo $cons_object -> fecha;
 	
