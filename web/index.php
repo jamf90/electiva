@@ -64,9 +64,15 @@ print_r(pg_fetch_array($consulta,3,PGSQL_NUM));
 
 echo"<br><br>";
 	
-print_r(pg_fetch_array($consulta,5,PGSQL_ASSOC));
-
+$cons_array = pg_fetch_array($consulta,5,PGSQL_ASSOC));
+print_r($cons_array);
+echo $cons_array[fecha];
+	
 echo"<br><br>";
+$cons_object = pg_fetch_object($consulta));
+print_r($cons_object);	
+echo $cons_object -> fecha;
+	
 	
 return "ok";
 });
