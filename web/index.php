@@ -54,7 +54,7 @@ $app->get('/consultardato', function () use ($app) {
 
 $dbconn = pg_pconnect("host=ec2-35-169-92-231.compute-1.amazonaws.com port=5432 dbname=d40d9mehlild8g user=wsslccaolqixxt password=7809ae03fd8da52449097500903b66b89591dfa44e9fecfb9100605a0eb7b1c1");
 
-$consulta = pg_query($dbconn, "SELECT * FROM motor_view WHERE id =20; ");
+$consulta = pg_query($dbconn, "SELECT * FROM motor_view WHERE id >20; ");
 
 print_r(pg_fetch_all($consulta));
 
