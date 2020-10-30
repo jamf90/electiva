@@ -58,7 +58,7 @@ $consulta = pg_query($dbconn, "SELECT * FROM motor_view");
 
 print_r(pg_fetch_all($consulta));
 return pg_fetch_all($consulta);
-
+pg_fetch_array($consulta,7,PGSQL_NUM);
 });
 
 
