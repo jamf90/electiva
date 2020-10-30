@@ -63,6 +63,7 @@ print_r(pg_fetch_array($consulta,3,PGSQL_NUM));
 print_r(pg_fetch_array($consulta,5,PGSQL_ASSOC));
 });
 
+return "ok";
 
 $app->run();  
 
