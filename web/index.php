@@ -45,13 +45,13 @@ $data= array(
 );
 //$respuesta = pg_insert($dbconn, $tabla, $data);
 	
-$query = "INSERT INTO " . $tabla . "(fecha,voltaje,motor,corriente,) VALUES ('" . date('Y-m-d H:i:s') . "'," . $voltaje . ",'" .$motor   ."', " . $corriente . ")" ;
+$query = "INSERT INTO " . $tabla . "(fecha,corriente,voltaje,motor) VALUES ('" . date('Y-m-d H:i:s') . "'," . $corriente . "," . $voltaje . ", '" . $motor . "');" ;
 	$respuesta = pg_query($dbconn, $query);
-
+   	
 	echo $query; echo "<br><br>";
 	echo $respuesta; echo "<br><br>";
-	$last_id = pg_last_oid($respuesta);
-   	return $last_id;	
+	echo "ID insert: ". pg_last_oid($respuesta);
+   	return pg_last_oid($respuesta);	
 
 
 });
