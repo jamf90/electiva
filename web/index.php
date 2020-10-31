@@ -27,8 +27,8 @@ $app->post('/guardardato', function (Request $request) use ($app) {
    
    $voltaje = $request->get('voltaje');
    $tabla = $request->get('tabla');
-
-
+   $motorsense=$request->get('motor');
+   $corriente =$request->get('corriente');
   
   	
 
@@ -38,8 +38,8 @@ $data= array(
 		"fecha"=>date('Y-m-d H:i:s'),
 		
 		"voltaje"=> $voltaje,
-		"motorsense"=>$request->get('motor'),
-		"corriente" => $request->get('corriente')
+		"motor"=> $motorsense
+		"corriente" =>$corriente 
 		
 		
 );
