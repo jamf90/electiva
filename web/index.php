@@ -38,7 +38,7 @@ $data= array(
 		"fecha"=>date('Y-m-d H:i:s'),
 		
 		"voltaje"=> $voltaje,
-		"motor"=> $motorsense
+		"motor"=> $motorsense,
 		"corriente" =>$corriente 
 		
 		
