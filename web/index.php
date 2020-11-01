@@ -106,7 +106,7 @@ $app->get('/limpiarDatos', function () use ($app) {
 
 		
 		if($registros >=20){
-		$id_borrar = $id_last - 10;
+		$id_borrar = $id_last - 50;
 		$query_delete = "DELETE FROM motor_view WHERE id<=" .$id_borrar.";";
 		$consulta_delete = pg_query($dbconn, $query_delete);
 		return "Se borraron los registros";
