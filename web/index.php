@@ -4,6 +4,8 @@ require('../vendor/autoload.php');
 
 use Symfony\Component\HttpFoundation\Request;
 
+date_default_timezone_set('America/Bogota');
+
 $app = new Silex\Application();
 $app['debug'] = true;
 
