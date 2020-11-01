@@ -99,7 +99,7 @@ $app->get('/limpiarDatos', function () use ($app) {
 	$id_last = pg_fetch_result($consulta_last, null, 0);
 	$id_first = pg_fetch_result($consulta_first, null, 0);
 
-	return $id_last - $id_first;
+	return $id_last - $id_first + 1;
 });
 
 
