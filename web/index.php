@@ -85,7 +85,22 @@ echo $cons_object -> fecha;
 	
 return "ok";
 });
+$app->get('/limpiarDatos', function () use ($app) {
 
+	$dbconn = pg_pconnect("host=ec2-35-169-92-231.compute-1.amazonaws.com port=5432 dbname=d40d9mehlild8g user=wsslccaolqixxt password=7809ae03fd8da52449097500903b66b89591dfa44e9fecfb9100605a0eb7b1c1");
+
+	
+	$query_last = "SELECT * FROM motor_view ORDER BY id DESC LIMIT 1";
+	$query_first = "SELECT * FROM motor_view ORDER BY id ASC LIMIT 1";
+
+	$consulta_last = pg_query($dbconn, $query_last);
+	$consulta_first = pg_query($dbconn, $query_first);
+
+	$id_last = pg_fetch_result($consulta_last, null, 0);
+	$id_first = pg_fetch_result($consulta_first, null, 0);
+
+	return $id_last - $id_first;
+});
 
 
 $app->run();  
