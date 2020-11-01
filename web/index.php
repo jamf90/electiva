@@ -99,7 +99,19 @@ $app->get('/limpiarDatos', function () use ($app) {
 	$id_last = pg_fetch_result($consulta_last, null, 0);
 	$id_first = pg_fetch_result($consulta_first, null, 0);
 
-	return $id_last - $id_first + 1;
+	
+	$registros = $id_last - $id_first + 1;
+
+		
+		if($registros >=20){
+		$id_borrar = $id_last - 10;
+		$query_delete = "DELETE FROM motor_view WHERE id>=" .$id_borrar.";";
+		$consulta_delete = pg_query($dbconn, $query_delete);
+		return "Se borraron los registros";
+	}
+	else{
+		return "No se borraron los registros";
+	}
 });
 
 
