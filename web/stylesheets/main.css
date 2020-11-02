@@ -1,6 +1,6 @@
 .jumbotron {
   background: #D2E3DF;
-  color: #050046;
+  color:#08072b;
   padding-bottom: 80px;
 }
 .jumbotron .btn-primary {
@@ -27,7 +27,7 @@
   border-radius: 50%;
  
   width: 100px;
-  height: 100px;
+  height: 150px;
   margin: auto;
   
 }
