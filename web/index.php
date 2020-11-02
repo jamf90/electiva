@@ -3,6 +3,7 @@
 require('../vendor/autoload.php');
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 date_default_timezone_set('America/Bogota');
 
@@ -65,27 +66,40 @@ $app->get('/consultardato', function () use ($app) {
 
 $dbconn = pg_pconnect("host=ec2-35-169-92-231.compute-1.amazonaws.com port=5432 dbname=d40d9mehlild8g user=wsslccaolqixxt password=7809ae03fd8da52449097500903b66b89591dfa44e9fecfb9100605a0eb7b1c1");
 
-$consulta = pg_query($dbconn, "SELECT * FROM motor_view ORDER BY id DESC LIMIT 20 ");
+$query = "SELECT * FROM motor_view ORDER BY id DESC LIMIT 15";
 
-print_r(pg_fetch_all($consulta));
+	$consulta = pg_query($dbconn, $query);
 
-echo"<br><br>";
+//echo"<br><br>";
 	
-print_r(pg_fetch_array($consulta,3,PGSQL_NUM));
+//print_r(pg_fetch_array($consulta,3,PGSQL_NUM));
 
-echo"<br><br>";
+//echo"<br><br>";
 	
-$cons_array = pg_fetch_array($consulta,5,PGSQL_ASSOC);
-print_r($cons_array);
-echo $cons_array[fecha];
+//$cons_array = pg_fetch_array($consulta,5,PGSQL_ASSOC);
+//print_r($cons_array);
+//echo $cons_array[fecha];
 	
-echo"<br><br>";
-$cons_object = pg_fetch_object($consulta);
-print_r($cons_object);	
-echo $cons_object -> fecha;
+//echo"<br><br>";
+//$cons_object = pg_fetch_object($consulta);
+//print_r($cons_object);	
+//echo $cons_object -> fecha;
 	
+	$resultArray = array();
+  	while ($row = pg_fetch_array($consulta, null, PGSQL_ASSOC)) {
+    	$resultArray[] = $row;
+  	}
 	
-return "ok";
+$jsonResult = json_encode($resultArray, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
+
+  $response = new Response();
+  $response->setContent($jsonResult);
+  $response->setCharset('UTF-8');
+  $response->headers->set('Content-Type', 'application/json');
+
+  return $response;
+});	
+
 });
 $app->get('/limpiarDatos', function () use ($app) {
 
