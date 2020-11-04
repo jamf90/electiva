@@ -42,16 +42,22 @@
 
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
-          ['VOLTAJE', 0],
-          ['CORRIENTE', 0]
+          ['V Bat', 0],
+          ['V Panel ', 0]
+          ['I Panel ', 0]
+          ['Temp 1 (°C) ', 0]
+          ['Temp 2 (°C) ', 0]
+          ['mWatt', 0]
+         
+         
          
         ]);
 
         var options = {
-          max : 400,
+          max : 100,
           width: 400, height: 400,
-          redFrom: 300, redTo: 400,
-          yellowFrom:200, yellowTo:300,
+          redFrom: 70, redTo: 90,
+          yellowFrom:90, yellowTo:100,
           minorTicks: 5
         };
 
@@ -61,13 +67,17 @@
 
         setInterval(function() {
             var JSON=$.ajax({
-                url:"https://gitelectiva.herokuapp.com/consultardato",
+                url:"https://lucescasa.herokuapp.com/consultardato",
                 dataType: 'json',
                 async: false}).responseText;
             var Respuesta=jQuery.parseJSON(JSON);
             
-          data.setValue(0, 1,Respuesta[0].voltaje);
-          data.setValue(1, 1,Respuesta[0].corriente);
+          data.setValue(0, 1,Respuesta[0].Voltbat);
+          data.setValue(1, 1,Respuesta[0].Voltpanel);
+          data.setValue(2, 1,Respuesta[0].Ipanel);
+          data.setValue(0, 2,Respuesta[0].Temp1);
+          data.setValue(1, 2,Respuesta[0].Temp2);
+          data.setValue(2, 2,Respuesta[0].mWatt);
           chart.draw(data, options);
         }, 1300);
         
