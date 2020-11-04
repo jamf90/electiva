@@ -100,6 +100,54 @@ $jsonResult = json_encode($resultArray, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
   return $response;
 });	
 
+$app->get('/getDataGoogle', function () use ($app) {
+        
+	$dbconn = pg_pconnect("host=ec2-35-169-92-231.compute-1.amazonaws.com port=5432 dbname=d40d9mehlild8g user=wsslccaolqixxt password=7809ae03fd8da52449097500903b66b89591dfa44e9fecfb9100605a0eb7b1c1");
+
+	$query = 'SELECT * FROM motor_view ORDER BY "fecha" DESC LIMIT 15';
+
+	$consulta = pg_query($dbconn, $query);
+
+	$table = array();
+	$table['cols'] = array(
+		array('id' => 'fecha', 'label' => 'FECHA', 'type' => 'datetime'),
+		array('id' => 'corriente', 'label' => 'CORRIENTE', 'type' => 'number'),
+		array('id' => 'voltaje', 'label' => 'VOLTAJE', 'type' => 'number')
+	);
+
+	$rows = array();
+
+	while($r = pg_fetch_assoc($consulta)) {
+	    $temp = array();
+	    $fecha_temp = strtotime($r['fecha']);
+	    $fecha_temp = $fecha_temp * 1000;
+	    // each column needs to have data inserted via the $temp array
+	    $temp[] = array('v' => 'Date('.$fecha_temp.')'); 
+	    $temp[] = array('v' => $r['corriente']);
+	    $temp[] = array('v' => $r['voltaje']);
+	    // etc...
+
+	    // insert the temp array into $rows
+	    $rows[] = array('c' => $temp); 
+  	}
+
+	// populate the table with rows of data
+	  $table['rows'] = $rows;
+
+	// encode the table as JSON
+	  $jsonTable = json_encode($table, JSON_PRETTY_PRINT);
+
+	  $jsonResult = json_encode($resultArray, JSON_PRETTY_PRINT | JSON_FORCE_OBJECT);
+
+	  $response = new Response();
+	  $response->setContent(htmlspecialchars_decode($jsonTable, ENT_QUOTES));
+	  $response->setCharset('UTF-8');
+	  $response->headers->set('Content-Type', 'application/json');
+
+	  //return htmlspecialchars_decode($jsonTable, ENT_QUOTES);
+	  return $response;
+	});
+	
 $app->get('/limpiarDatos', function () use ($app) {
 
 	$dbconn = pg_pconnect("host=ec2-35-169-92-231.compute-1.amazonaws.com port=5432 dbname=d40d9mehlild8g user=wsslccaolqixxt password=7809ae03fd8da52449097500903b66b89591dfa44e9fecfb9100605a0eb7b1c1");
