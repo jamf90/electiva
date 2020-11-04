@@ -7,6 +7,7 @@
 
 <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
+      google.charts.load('current', {'packages':['gauge']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
@@ -34,3 +35,37 @@
 
 <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
 <link rel="shortcut icon" href="https://i.ibb.co/dDmkXdV/lalogrge.jpg">
+
+    function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['VOLTAJE', 0],
+          ['CORRIENTE', 0]
+         
+        ]);
+
+        var options = {
+          width: 400, height: 400,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('Medidores'));
+
+        chart.draw(data, options);
+
+        setInterval(function() {
+            var JSON=$.ajax({
+                url:"https://gitelectiva.herokuapp.com/consultardato",
+                dataType: 'json',
+                async: false}).responseText;
+            var Respuesta=jQuery.parseJSON(JSON);
+            
+          data.setValue(0, 1,Respuesta[0].voltaje);
+          data.setValue(1, 1,Respuesta[0].corriente);
+          chart.draw(data, options);
+        }, 1300);
+        
+      }
